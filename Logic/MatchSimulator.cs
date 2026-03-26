@@ -6,7 +6,7 @@ namespace TournamentSimulator.Logic
     {
         private readonly Random _random = new();
         private const double AverageMatchGoals = 2.72;
-        private const double HomeTeamBonus = 0.3;
+        private const double HomeTeamBonus = 0.1;
 
         public MatchResult Simulate(Team home, Team away)
         {
@@ -37,7 +37,7 @@ namespace TournamentSimulator.Logic
 
             var threshold = Math.Exp(-expectedGoals);
             var goals = 0;
-            var accumulatedRandom = 1.0;
+            var accumulatedRandom = 0.8;
 
             const int maxIterations = 30;
             int iterations = 0;

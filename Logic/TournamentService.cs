@@ -1,4 +1,5 @@
-﻿using TournamentSimulator.Logic.Comparers;
+﻿using System.Collections;
+using TournamentSimulator.Logic.Comparers;
 using TournamentSimulator.Models;
 
 namespace TournamentSimulator.Logic
@@ -23,14 +24,13 @@ namespace TournamentSimulator.Logic
                 ApplyMatchResult(standings, match, result);
             }
 
+            var comparer = new StandingComparer(matches);
+
             var orderedStandings = standings.Values
-                .OrderBy(s => s, new StandingComparer(matches))
-                .Select((s, index) =>
-                {
-                    s.Position = index + 1;
-                    return s;
-                })
+                .OrderBy(s => s, comparer)
                 .ToList();
+
+            SetPositions(comparer, orderedStandings);
 
             var qualified = orderedStandings
                 .Take(2)
@@ -46,6 +46,21 @@ namespace TournamentSimulator.Logic
                 Standings = orderedStandings,
                 QualifiedTeams = qualified.Select(x => x.Name).ToList()
             };
+        }
+
+        private static void SetPositions(StandingComparer comparer, List<Standing> orderedStandings)
+        {
+            for (int i = 0; i < orderedStandings.Count; i++)
+            {
+                if (i > 0 && comparer.Compare(orderedStandings[i], orderedStandings[i - 1]) == 0)
+                {
+                    orderedStandings[i].Position = orderedStandings[i - 1].Position;
+                }
+                else
+                {
+                    orderedStandings[i].Position = i + 1;
+                }
+            }
         }
 
         private static void ApplyMatchResult(Dictionary<string, Standing> standings, Match match, MatchResult result)
