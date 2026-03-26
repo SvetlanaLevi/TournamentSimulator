@@ -1,9 +1,9 @@
 ﻿namespace TournamentSimulator.Models
 {
-    class SimulationResponse
+    public class SimulationResponse
     {
-        public List<MatchDto> Matches { get; set; }
-        public List<StandingDto> Standings { get; set; }
-        public List<string> QualifiedTeams { get; set; }
+        public required IReadOnlyList<Round> Rounds { get; set; }
+        public required IReadOnlyList<Standing> Standings { get; set; }
+        public required IReadOnlyList<string> QualifiedTeams { get; set; }
     }
 }
