@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using TournamentSimulator.Logic.Comparers;
+﻿using TournamentSimulator.Logic.Comparers;
 using TournamentSimulator.Models;
 
 namespace TournamentSimulator.Logic

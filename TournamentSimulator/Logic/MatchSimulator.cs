@@ -33,7 +33,7 @@ namespace TournamentSimulator.Logic
 
         private int AddRandomness(double expectedGoals)
         {
-            // Generate goals using Poisson distribution
+            // Generate goals using Poisson-like distribution
 
             var threshold = Math.Exp(-expectedGoals);
             var goals = 0;

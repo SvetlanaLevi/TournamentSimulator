@@ -8,10 +8,10 @@ namespace TournamentSimulator.Logic
         {
             return
             [
-                new Team(Name: "A", Strength:10),
-                new Team(Name: "B", Strength:6),
-                new Team(Name: "C", Strength:3),
-                new Team(Name: "D", Strength:9)
+                new Team(Name: "A", Strength:100),
+                new Team(Name: "B", Strength:60),
+                new Team(Name: "C", Strength:30),
+                new Team(Name: "D", Strength:90)
             ];
         }
     }
